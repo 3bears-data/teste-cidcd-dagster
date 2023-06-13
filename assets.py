@@ -16,7 +16,7 @@ def mediano(topo):
 
 @asset(group_name="pipelineGroup")
 def baixo(mediano):
-    """Execucao baixa 5"""
+    """Execucao baixa 6"""
     print("Executa baixa"
           )
 
