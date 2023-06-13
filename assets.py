@@ -69,10 +69,13 @@ def getFromGit():
 
 @asset(group_name="gitGroup")
 def reloadPipeline(getFromGit):
+    from dagster_graphql import DagsterGraphQLClient
+    client = DagsterGraphQLClient("localhost", port_number=3000)   
+    
     REPO_NAME = "dagster_home"
     reload_info: ReloadRepositoryLocationInfo = client.reload_repository_location(REPO_NAME)
     if reload_info.status == ReloadRepositoryLocationStatus.SUCCESS:
-        do_something_on_success()
+        print("Sucesso no reload")
     else:
         raise Exception(
             "Repository location reload failed because of a "
