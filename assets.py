@@ -69,6 +69,7 @@ def getFromGit():
 
 @asset(group_name="gitGroup")
 def reloadPipeline(getFromGit):
+    """Refresh no pipeline"""
     from dagster_graphql import DagsterGraphQLClient
     client = DagsterGraphQLClient("localhost", port_number=3000)   
     
