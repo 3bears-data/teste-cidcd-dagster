@@ -63,4 +63,18 @@ def getFromGit():
     # Copiar o arquivo para a pasta de destino
     shutil.copy(src_file, dest_file)
 
-    print('Arquivo copiado para a pasta de destino com sucesso!')    
+    print('Arquivo copiado para a pasta de destino com sucesso!')  
+    
+    return True
+
+@asset(group_name="gitGroup")
+def reloadPipeline(getFromGit):
+    REPO_NAME = "dagster_home"
+    reload_info: ReloadRepositoryLocationInfo = client.reload_repository_location(REPO_NAME)
+    if reload_info.status == ReloadRepositoryLocationStatus.SUCCESS:
+        do_something_on_success()
+    else:
+        raise Exception(
+            "Repository location reload failed because of a "
+            f"{reload_info.failure_type} error: {reload_info.message}"
+        )    
