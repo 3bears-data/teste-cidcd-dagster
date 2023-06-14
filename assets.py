@@ -16,7 +16,7 @@ def mediano(topo):
 
 @asset(group_name="pipelineGroup")
 def baixo(mediano):
-    """Execucao baixa 6"""
+    """Execucao baixa teste 2"""
     print("Executa baixa"
           )
 
@@ -43,11 +43,6 @@ def getFromGit():
 
     # Clonando o repositório
     repo = git.Repo.clone_from(repo_url, dest_folder)
-
-    # Movendo o arquivo baixado para o diretório desejado
-    src_file = os.path.join(dest_folder, file_name)
-    dest_file = os.path.join(dest_folder, file_name)
-    os.rename(src_file, dest_file)
 
     print('Download concluído!')
 
